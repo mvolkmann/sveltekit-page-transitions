@@ -20,9 +20,9 @@
     page = pages[pageIndex];
   }
 
-  const slideIn = (node, {back}) => slide(node, back, 1);
+  const slideIn = (node, back) => slide(node, back, 1);
 
-  const slideOut = (node, {back}) => slide(node, back, -1);
+  const slideOut = (node, back) => slide(node, back, -1);
 
   function slide(node, back, direction) {
     return {
@@ -38,7 +38,7 @@
 <svelte:window bind:innerWidth />
 
 {#key page}
-  <main class="route" in:slideIn={{back}} out:slideOut={{back}}>
+  <main class="route" in:slideIn={back} out:slideOut={back}>
     <svelte:component this={page} on:page={changePage} />
   </main>
 {/key}
