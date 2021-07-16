@@ -20,13 +20,9 @@
     page = pages[pageIndex];
   }
 
-  function slideIn(node, {back}) {
-    return slide(node, back, 1);
-  }
+  const slideIn = (node, {back}) => slide(node, back, 1);
 
-  function slideOut(node, {back}) {
-    return slide(node, back, -1);
-  }
+  const slideOut = (node, {back}) => slide(node, back, -1);
 
   function slide(node, back, direction) {
     return {
