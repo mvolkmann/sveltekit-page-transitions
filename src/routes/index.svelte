@@ -4,37 +4,36 @@
   import Page3 from './page3.svelte';
 
   const duration = 500;
-  const paths = [Page1, Page2, Page3];
+  const pages = [Page1, Page2, Page3];
+  const lastIndex = pages.length - 1;
 
-  let component = Page1;
-  let innerWidth = 0;
-
-  let currentComponent = 0;
   let back = false;
+  let innerWidth = 0;
+  let page = Page1;
+  let pageIndex = 0;
 
   function changePage(event) {
     back = Boolean(event.detail && event.detail.back);
-    console.log('index.svelte changePage: back =', back);
-    currentComponent = (currentComponent + 1) % paths.length;
-    component = paths[currentComponent];
+    pageIndex += back ? -1 : 1;
+    if (pageIndex < 0) pageIndex = lastIndex;
+    if (pageIndex > lastIndex) pageIndex = 0;
+    page = pages[pageIndex];
   }
 
   function slideIn(node, {back}) {
-    const w = innerWidth;
-    return {
-      duration,
-      css(t, u) {
-        return `transform: translateX(${back ? -w * u : w * u}px)`;
-      }
-    };
+    return slide(node, back, 1);
   }
 
-  function slideOut(node, {back, width}) {
-    const w = innerWidth;
+  function slideOut(node, {back}) {
+    return slide(node, back, -1);
+  }
+
+  function slide(node, back, direction) {
     return {
       duration,
       css(t, u) {
-        return `transform: translateX(${back ? w * u : -w * u}px)`;
+        const tx = direction * innerWidth * u * (back ? -1 : 1);
+        return `transform: translateX(${tx}px)`;
       }
     };
   }
@@ -42,9 +41,9 @@
 
 <svelte:window bind:innerWidth />
 
-{#key component}
+{#key page}
   <main class="route" in:slideIn={{back}} out:slideOut={{back}}>
-    <svelte:component this={component} on:page={changePage} />
+    <svelte:component this={page} on:page={changePage} />
   </main>
 {/key}
 
