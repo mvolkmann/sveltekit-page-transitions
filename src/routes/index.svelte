@@ -19,20 +19,22 @@
     component = paths[currentComponent];
   }
 
-  function slideIn(node, {back, width}) {
+  function slideIn(node, {back}) {
+    const w = innerWidth;
     return {
       duration,
       css(t, u) {
-        return `transform: translateX(${back ? -width * u : width * u}px)`;
+        return `transform: translateX(${back ? -w * u : w * u}px)`;
       }
     };
   }
 
   function slideOut(node, {back, width}) {
+    const w = innerWidth;
     return {
       duration,
       css(t, u) {
-        return `transform: translateX(${back ? width * u : -width * u}px)`;
+        return `transform: translateX(${back ? w * u : -w * u}px)`;
       }
     };
   }
@@ -41,11 +43,7 @@
 <svelte:window bind:innerWidth />
 
 {#key component}
-  <main
-    class="route"
-    in:slideIn={{back, width: innerWidth}}
-    out:slideOut={{back, width: innerWidth}}
-  >
+  <main class="route" in:slideIn={{back}} out:slideOut={{back}}>
     <svelte:component this={component} on:page={changePage} />
   </main>
 {/key}
