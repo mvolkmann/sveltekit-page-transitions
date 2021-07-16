@@ -13,7 +13,7 @@
   let back = false;
 
   function changePage(event) {
-    back = !!(event.detail && event.detail.back);
+    back = Boolean(event.detail && event.detail.back);
     console.log('index.svelte changePage: back =', back);
     currentComponent = (currentComponent + 1) % paths.length;
     component = paths[currentComponent];
