@@ -10,6 +10,7 @@
 <style>
   section {
     background-color: red;
+    box-sizing: border-box;
     color: white;
     font-size: 2rem;
     height: 100%;

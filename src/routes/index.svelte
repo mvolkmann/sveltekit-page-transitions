@@ -38,17 +38,13 @@
 <svelte:window bind:innerWidth />
 
 {#key page}
-  <main class="route" in:slideIn={back} out:slideOut={back}>
+  <main class="page" in:slideIn={back} out:slideOut={back}>
     <svelte:component this={page} on:page={changePage} />
   </main>
 {/key}
 
 <style>
-  .route {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
+  .page {
     position: absolute;
     top: 0;
 
