@@ -45,19 +45,14 @@
 
 <style>
   .route {
-    --margin-top: 2rem;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 
     position: absolute;
     top: 0;
-    /* top: var(--margin-top); */
 
     box-sizing: border-box;
-    /* min-height: 100vh; */
-    /* height: calc(100vh - var(--margin-top)); */
     height: 100vh;
     width: 100vw;
   }
