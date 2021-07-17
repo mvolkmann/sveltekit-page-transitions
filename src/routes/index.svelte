@@ -12,19 +12,19 @@
   let page = Page1;
   let pageIndex = 0;
 
-  function changePage(event) {
-    back = Boolean(event.detail && event.detail.back);
+  function changePage(goBack) {
+    back = goBack;
     pageIndex += back ? -1 : 1;
     if (pageIndex < 0) pageIndex = lastIndex;
     if (pageIndex > lastIndex) pageIndex = 0;
     page = pages[pageIndex];
   }
 
-  const slideIn = (node, back) => slide(node, back, 1);
+  const slideIn = (node, back) => slide(back, 1);
 
-  const slideOut = (node, back) => slide(node, back, -1);
+  const slideOut = (node, back) => slide(back, -1);
 
-  function slide(node, back, direction) {
+  function slide(back, direction) {
     return {
       duration,
       css(t, u) {
@@ -37,19 +37,59 @@
 
 <svelte:window bind:innerWidth />
 
-{#key page}
-  <main class="page" in:slideIn={back} out:slideOut={back}>
-    <svelte:component this={page} on:page={changePage} />
-  </main>
-{/key}
+<main>
+  <nav>
+    <button on:click={() => changePage(true)}>Previous</button>
+    <button on:click={() => changePage(false)}>Next</button>
+  </nav>
+  {#key page}
+    <section class="container" in:slideIn={back} out:slideOut={back}>
+      <svelte:component this={page} />
+    </section>
+  {/key}
+</main>
 
 <style>
-  .page {
+  .container {
     position: absolute;
-    top: 0;
+    top: var(--nav-height);
 
     box-sizing: border-box;
-    height: 100vh;
+    height: calc(100vh - var(--nav-height));
     width: 100vw;
+    z-index: -1;
+  }
+
+  main {
+    --nav-height: 3rem;
+
+    height: 100vh;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    box-sizing: border-box;
+    height: var(--nav-height);
+    padding: 0.5rem;
+  }
+
+  :global(body) {
+    margin: 0;
+  }
+
+  :global(.page) {
+    box-sizing: border-box;
+    color: white;
+    font-size: 2rem;
+    height: 100%;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  :global(.page p) {
+    margin-top: 0;
   }
 </style>
