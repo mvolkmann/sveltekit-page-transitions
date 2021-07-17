@@ -20,11 +20,11 @@
     page = pages[pageIndex];
   }
 
-  const slideIn = (node, back) => slide(back, 1);
+  const slideIn = () => slide(1);
 
-  const slideOut = (node, back) => slide(back, -1);
+  const slideOut = () => slide(-1);
 
-  function slide(back, direction) {
+  function slide(direction) {
     return {
       duration,
       css(t, u) {
@@ -43,7 +43,7 @@
     <button on:click={() => changePage(false)}>Next</button>
   </nav>
   {#key page}
-    <section class="container" in:slideIn={back} out:slideOut={back}>
+    <section class="container" in:slideIn out:slideOut>
       <svelte:component this={page} />
     </section>
   {/key}
