@@ -11,16 +11,10 @@ if (browser) {
   window.onpopstate = () => {
     back = true;
     // Reset back when the transition is complete.
+    // await tick(); does not work as a replacement for setTimeout here.
+    //TODO: Why use 200?
     setTimeout(() => (back = false), 200);
   };
-}
-
-export function goBack() {
-  back = true;
-  history.back();
-  // await tick(); does not work as a replacement for setTimeout here.
-  // Reset back when the transition is complete.
-  setTimeout(() => (back = false), 200); //TODO: Why this time?
 }
 
 export const slideIn = () => slide(1);
@@ -28,6 +22,7 @@ export const slideIn = () => slide(1);
 export const slideOut = () => slide(-1);
 
 export function slide(direction) {
+  console.log('transitions.js slide: back =', back);
   return {
     duration,
     css(t, u) {

@@ -1,12 +1,8 @@
-<script>
-  import {goBack} from '../lib/transitions';
-</script>
-
 <nav>
   <a href="page1">Page 1</a>
   <a href="page2">Page 2</a>
   <a href="page3">Page 3</a>
-  <button on:click={goBack}>Back</button>
+  <button on:click={() => history.back()}>Back</button>
 </nav>
 <slot />
 
