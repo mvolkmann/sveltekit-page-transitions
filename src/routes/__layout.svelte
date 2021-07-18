@@ -1,12 +1,5 @@
 <script>
-  import {backStore} from '../lib/transitions';
-
-  async function goBack() {
-    $backStore = true;
-    history.back();
-    // await tick(); does not work as a replacement for setTimeout.
-    setTimeout(() => ($backStore = false), 20); //TODO: Why this time?
-  }
+  import {goBack} from '../lib/transitions';
 </script>
 
 <nav>
