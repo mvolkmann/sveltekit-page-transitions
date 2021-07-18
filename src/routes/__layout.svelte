@@ -8,7 +8,6 @@
   <a href="page3">Page 3</a>
   <button on:click={goBack}>Back</button>
 </nav>
-
 <slot />
 
 <style>
@@ -16,11 +15,8 @@
     --nav-height: 3rem;
   }
 
-  :global(body) {
-    margin: 0;
-  }
-
   :global(.page) {
+    /* Pages use absolute positioning to support slide transitions. */
     position: absolute;
     top: var(--nav-height);
 
