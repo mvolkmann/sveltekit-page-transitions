@@ -1,13 +1,13 @@
 <script>
-  import {slideIn, slideOut} from '../lib/transitions';
+  import Page from '../lib/Page.svelte';
 </script>
 
-<section class="page" in:slideIn out:slideOut>
+<Page name="page1">
   <p>This is page #1.</p>
-</section>
+</Page>
 
 <style>
-  section {
+  :global(.page1) {
     background-color: red;
   }
 </style>

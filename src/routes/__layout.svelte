@@ -1,3 +1,14 @@
+<script>
+  import {page} from '$app/stores';
+
+  const pageStack = [];
+
+  $: {
+    pageStack.push($page.path);
+    console.log('__layout.svelte: pageStack =', pageStack);
+  }
+</script>
+
 <nav>
   <a href="page1">Page 1</a>
   <a href="page2">Page 2</a>
