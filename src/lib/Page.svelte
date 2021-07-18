@@ -1,9 +1,28 @@
 <script>
-  import {slideIn, slideOut} from './transitions';
+  import {setBack, slideIn, slideOut} from './transitions';
 
   export let name;
+
+  let activeTransitions = 0;
+
+  function endTransition() {
+    activeTransitions--;
+    if (activeTransitions === 0) setBack(false);
+  }
+
+  function startTransition() {
+    activeTransitions++;
+  }
 </script>
 
-<section class="page {name}" in:slideIn out:slideOut>
+<section
+  class="page {name}"
+  in:slideIn
+  out:slideOut
+  on:introstart={startTransition}
+  on:introend={endTransition}
+  on:outrostart={startTransition}
+  on:outroend={endTransition}
+>
   <slot />
 </section>

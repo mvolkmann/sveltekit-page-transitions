@@ -1,8 +1,8 @@
 <script>
   import {page} from '$app/stores';
 
+  //TODO: Want this code?
   const pageStack = [];
-
   $: {
     pageStack.push($page.path);
     console.log('__layout.svelte: pageStack =', pageStack);
