@@ -1,13 +1,19 @@
 <script>
-  import {createEventDispatcher} from 'svelte';
+  import {backStore} from '../lib/transitions';
 
-  const dispatch = createEventDispatcher();
+  async function goBack() {
+    $backStore = true;
+    history.back();
+    // await tick(); does not work as a replacement for setTimeout.
+    setTimeout(() => ($backStore = false), 20); //TODO: Why this time?
+  }
 </script>
 
 <nav>
   <a href="page1">Page 1</a>
   <a href="page2">Page 2</a>
   <a href="page3">Page 3</a>
+  <button on:click={goBack}>Back</button>
 </nav>
 
 <slot />
