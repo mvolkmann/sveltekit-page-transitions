@@ -7,7 +7,13 @@
 
   function endTransition() {
     activeTransitions--;
-    if (activeTransitions === 0) reset();
+    if (activeTransitions === 0) {
+      //TODO: Could you use this to detect if the back or forward button
+      //TODO: was pressed in the onpopstate function in transistions.js?
+      // Add data to the history state object that was pushed.
+      //history.replaceState({count = ?});
+      reset();
+    }
   }
 
   function startTransition() {
