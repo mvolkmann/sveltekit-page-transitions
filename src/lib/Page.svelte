@@ -1,5 +1,5 @@
 <script>
-  import {setBack, slideIn, slideOut} from './transitions';
+  import {reset, slideIn, slideOut} from './transitions';
 
   export let name;
 
@@ -7,7 +7,7 @@
 
   function endTransition() {
     activeTransitions--;
-    if (activeTransitions === 0) setBack(false);
+    if (activeTransitions === 0) reset();
   }
 
   function startTransition() {

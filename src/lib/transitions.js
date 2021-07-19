@@ -2,8 +2,8 @@ import {browser} from '$app/env';
 
 const duration = 500;
 
-export function setBack(b) {
-  back = b;
+export function reset() {
+  back = false;
 }
 
 let back = false;
@@ -23,7 +23,6 @@ export const slideIn = () => slide(1);
 export const slideOut = () => slide(-1);
 
 export function slide(direction) {
-  console.log('transitions.js slide: back =', back);
   return {
     duration,
     css(t, u) {
