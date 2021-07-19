@@ -14,6 +14,7 @@ if (browser) {
   // when the browser back or forward button is pressed.
   // TODO: We need to only set back to true when the back button is pressed.
   window.onpopstate = () => {
+    console.log('transitions.js onpopstate: entered');
     back = true;
   };
 }
