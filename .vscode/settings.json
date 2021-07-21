@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["introend", "introstart", "outroend", "outrostart"]
+  "cSpell.words": [
+    "introend",
+    "introstart",
+    "outroend",
+    "outrostart",
+    "sveltekit"
+  ]
 }
